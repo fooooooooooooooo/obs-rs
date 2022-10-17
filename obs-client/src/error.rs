@@ -1,6 +1,5 @@
 use graphic_offsets::GraphicOffsetsError;
 use inject_helper::InjectHelperError;
-use std::fmt::{Display, Formatter, Result};
 
 #[derive(Debug)]
 pub enum ObsError {
@@ -17,8 +16,8 @@ pub enum ObsError {
     MapSurface,
 }
 
-impl Display for ObsError {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+impl std::fmt::Display for ObsError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             ObsError::ProcessNotFound => write!(f, "ProcessNotFound"),
             ObsError::Inject(e) => write!(f, "Inject: {:?}", e),
@@ -36,3 +35,5 @@ impl Display for ObsError {
         Ok(())
     }
 }
+
+impl std::error::Error for ObsError {}
